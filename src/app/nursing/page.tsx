@@ -33,7 +33,7 @@ const NursingPage  = () => {
 
           <div className="flex flex-col mt-60 md:flex-row md:space-x-20 space-y-4 md:space-y-0 items-center">
             <a
-              href="https://nursingskill.mrware.us/web/index.html"
+              href="https://nursingskill.mrware.us"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center px-6 py-3 bg-[#20cbba] hover:bg-[#39bfe7] rounded-full w-[250px] h-[60px] transition-colors duration-300 transform hover:scale-105  shadow-lg"
