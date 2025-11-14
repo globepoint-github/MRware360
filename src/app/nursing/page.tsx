@@ -1,9 +1,13 @@
 "use client";
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import HeroBanner from '@/components/ui/HeroBanner';
+import Button from '@/components/ui/Button';
+import Section from '@/components/ui/Section';
+import FeatureCard from '@/components/ui/FeatureCard';
 import '../../../i18n';
 
-const NursingPage  = () => {
+const NursingPage = () => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -15,140 +19,95 @@ const NursingPage  = () => {
 
   return (
     <div className="NursingSkillBanner">
-      <div
-        className="relative h-screen bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/bg1.png')",
-        }}
+      <HeroBanner
+        title={t('coreNursingSkills')}
+        subtitle={t('practiceManage')}
+        backgroundImage="/bg1.png"
+        overlay={true}
+        overlayOpacity={0.5}
       >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-        <div className="main-banner-title text-4xl font-bold text-[#FFFFFF] text-[63px] font-extrabold leading-[1.2] break-words text-center">
-            {t('coreNursingSkills')}
-          </div>
-          <div className="text-2xl mt-8 mb-8 font-medium text-center text-[34.2px] leading-[44.46px] font-['Noto Sans KR']">
-            {t('practiceManage')}
-          </div>
-
-          <div className="flex flex-col mt-60 md:flex-row md:space-x-20 space-y-4 md:space-y-0 items-center">
-            <a
-              href="https://nursingskill.mrware.us"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-[#20cbba] hover:bg-[#39bfe7] rounded-full w-[250px] h-[60px] transition-colors duration-300 transform hover:scale-105  shadow-lg"
-            >
-              <img src="/Group1.png" alt="Icon" className="w-6 h-6 mr-2" />
-              {t('nav1')}
-            </a>
-            <a
-              href=""
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-[#d764ff] hover:bg-[#e28cff] rounded-full w-[250px] h-[60px] transition-colors duration-300 transform hover:scale-105  shadow-lg"
-            >
-              <img src="/Group2.png" alt="Icon" className="w-6 h-6 mr-2" />
-              {t('nav3')}
-            </a>
-          </div>
-
-          <div className="flex flex-col mt-10 md:flex-row md:space-x-20 space-y-4 md:space-y-0 items-center">
-            <a
-              href="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_4da40ab7f9d14b998a98d89a4810f18b/images/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%99%9C%EC%9A%A9%20%EB%A7%A4%EB%89%B4%EC%96%BC_V.02%20(1).pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-[#8168ff] hover:bg-[#9b8bff] rounded-full w-full md:w-[570px] h-[60px] transition-colors duration-300 transform hover:scale-105 shadow-lg"
-              >
-              <img src="/Group2.png" alt="Icon" className="w-6 h-6 mr-2" />
-              {t('nav2')}
-            </a>
-          </div>
+        <div className="flex flex-col mt-12 md:flex-row md:gap-5 gap-4 items-center">
+          <Button
+            href="https://nursingskill.mrware.us"
+            variant="cyan"
+            size="md"
+            external
+            icon={<img src="/Group1.png" alt="" className="w-6 h-6" aria-hidden="true" />}
+          >
+            {t('nav1')}
+          </Button>
+          <Button
+            href=""
+            variant="purple"
+            size="md"
+            external
+            icon={<img src="/Group2.png" alt="" className="w-6 h-6" aria-hidden="true" />}
+          >
+            {t('nav3')}
+          </Button>
         </div>
-      </div>
 
-      <div className="nursing-skill-intro-wrap bg-[#F8F8FF]">
-        {/* 첫번째 */}
-        <div className="first flex justify-center items-center py-40 flex-col sm:flex-row ">
-          <div className="contents-1 w-[300px] h-[350px] top-[1050.22px] left-[470px] rounded-[20px] bg-[#FFFFFF] mb-6 sm:mr-6 mt-10 shadow-lg transition-transform duration-2 transform hover:scale-105">
-          <div className="first-icon flex justify-center items-center h-[10px]">
-              <img
-                src="/first-icon-1.png"
-                alt="9"
-                className="w-[130px] h-[130px]"
-              />
-            </div>
-            <div className="first-title mt-20">
-              <p className="font-['Noto Sans KR'] font-[700] text-[22px] leading-[31.86px] text-center">
-                Student
-              </p>
-            </div>
-            <div className="first-text mt-4">
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-              {t('practiceAnywhere2')}
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-              {t('practiceAnyhere')}
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-              {t('likeRepeatedPractice')} 
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-              {t('likeRepeatedPractice2')}   
-              </p>
-            </div>
-          </div>
-          <div className="contents-2 w-[300px] h-[350px] top-[1050.22px] left-[470px] rounded-[20px] bg-[#FFFFFF] mb-6 sm:mr-6 mt-10 shadow-lg transition-transform duration-2 transform hover:scale-105">
-            <div className="first-icon flex justify-center items-center h-[10px]">
-              <img
-                src="/first-icon-2.png"
-                alt="9"
-                className="w-[130px] h-[130px]"
-              />
-            </div>
-            <div className="first-title mt-20">
-              <p className="font-['Noto Sans KR'] font-[700] text-[22px] leading-[31.86px] text-center">
-                Professor
-              </p>
-            </div>
-            <div className="first-text mt-4">
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                <span className="line-1">{t('studentLearningStatus')}&nbsp;</span>
-                <span className="line-2">{t('studentLearningStatus2')}</span>
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                {t('feedbackIsGood')}
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                {t('coreNursingSkillScoring')}
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                {t('coreNursingSkillManaging')}
-              </p>
-            </div>
-          </div>
-          <div className="contents-2 w-[300px] h-[350px] top-[1050.22px] left-[470px] rounded-[20px] bg-[#FFFFFF] mb-6 sm:mr-6 mt-10 shadow-lg transition-transform duration-2 transform hover:scale-105">
-            <div className="first-icon flex justify-center items-center h-[10px]">
-              <img
-                src="/first-icon-3.png"
-                alt="9"
-                className="w-[130px] h-[130px]"
-              />
-            </div>
-            <div className="first-title mt-20">
-              <p className="font-['Noto Sans KR'] font-[700] text-[22px] leading-[31.86px] text-center">
-                School
-              </p>
-            </div>
-            <div className="first-text mt-4">
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                {t('vrDesc1')}
-              </p>
-              <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[28.96px] text-center">
-                {t('vrDesc2')}
-              </p>
-            </div>
-          </div>
+        <div className="flex flex-col mt-4 md:flex-row gap-4 items-center w-full max-w-[570px]">
+          <Button
+            href="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_4da40ab7f9d14b998a98d89a4810f18b/images/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%99%9C%EC%9A%A9%20%EB%A7%A4%EB%89%B4%EC%96%BC_V.02%20(1).pdf"
+            variant="primary"
+            size="full"
+            external
+            icon={<img src="/Group2.png" alt="" className="w-6 h-6" aria-hidden="true" />}
+          >
+            {t('nav2')}
+          </Button>
         </div>
+      </HeroBanner>
+
+      <Section
+        backgroundColor="gray-50"
+        padding="lg"
+        maxWidth="lg"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
+          <FeatureCard
+            icon="/first-icon-1.png"
+            title="Student"
+            description={
+              <>
+                <p>{t('practiceAnywhere2')}</p>
+                <p>{t('practiceAnyhere')}</p>
+                <p>{t('likeRepeatedPractice')}</p>
+                <p>{t('likeRepeatedPractice2')}</p>
+              </>
+            }
+            className="w-full max-w-sm mx-auto"
+          />
+          <FeatureCard
+            icon="/first-icon-2.png"
+            title="Professor"
+            description={
+              <>
+                <p>
+                  <span className="line-1">{t('studentLearningStatus')}&nbsp;</span>
+                  <span className="line-2">{t('studentLearningStatus2')}</span>
+                </p>
+                <p>{t('feedbackIsGood')}</p>
+                <p>{t('coreNursingSkillScoring')}</p>
+                <p>{t('coreNursingSkillManaging')}</p>
+              </>
+            }
+            className="w-full max-w-sm mx-auto"
+          />
+          <FeatureCard
+            icon="/first-icon-3.png"
+            title="School"
+            description={
+              <>
+                <p>{t('vrDesc1')}</p>
+                <p>{t('vrDesc2')}</p>
+              </>
+            }
+            className="w-full max-w-sm mx-auto"
+          />
+        </div>
+      </Section>
         {/* 두번째 */}
         <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#f2f0f4]">
             <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
