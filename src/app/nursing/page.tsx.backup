@@ -1,6 +1,5 @@
-'use client';
-
-import { useEffect } from 'react';
+"use client";
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import HeroBanner from '@/components/ui/HeroBanner';
 import Button from '@/components/ui/Button';
@@ -38,9 +37,10 @@ const NursingPage = () => {
             {t('nav1')}
           </Button>
           <Button
+            href=""
             variant="purple"
             size="md"
-            disabled
+            external
             icon={<img src="/Group2.png" alt="" className="w-6 h-6" aria-hidden="true" />}
           >
             {t('nav3')}
@@ -505,6 +505,7 @@ const NursingPage = () => {
               </div>
             </div>
           </div>
+      </div>
     </div>
   );
 };

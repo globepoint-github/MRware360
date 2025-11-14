@@ -2,7 +2,7 @@ import React from 'react';
 import Badge from './Badge';
 
 interface ImageTextSectionProps {
-  image: string;
+  image: string | null | undefined;
   imageAlt: string;
   badge?: {
     text: string;
@@ -23,11 +23,14 @@ const ImageTextSection: React.FC<ImageTextSectionProps> = ({
   reverse = false,
   className = '',
 }) => {
+  // image prop 검증
+  const safeImage = image && typeof image === 'string' && image !== 'null' && image !== 'undefined' ? image : '/placeholder.png';
+
   return (
     <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-6 md:gap-10 ${className}`}>
       <div className="w-full md:w-1/2">
         <img
-          src={image}
+          src={safeImage}
           alt={imageAlt}
           className="w-full h-auto rounded-card object-cover"
           loading="lazy"

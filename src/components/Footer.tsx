@@ -26,12 +26,18 @@ const Footer = () => {
               className="w-5 h-5" 
               aria-hidden="true"
             />
-            <a 
-              href={`tel:${t('phone1').replace(/\s/g, '')}`}
-              className="text-white hover:text-primary-light transition-colors"
-            >
-              {t('phone1')}
-            </a>
+            {(() => {
+              const phone1 = t('phone1');
+              const phone1Href = phone1 && typeof phone1 === 'string' ? `tel:${phone1.replace(/\s/g, '')}` : '#';
+              return (
+                <a 
+                  href={phone1Href}
+                  className="text-white hover:text-primary-light transition-colors"
+                >
+                  {phone1 || ''}
+                </a>
+              );
+            })()}
           </div>
           
           <div className="flex items-center gap-2">
@@ -41,12 +47,18 @@ const Footer = () => {
               className="w-5 h-5" 
               aria-hidden="true"
             />
-            <a 
-              href={`tel:${t('phone2').replace(/\s/g, '')}`}
-              className="text-white hover:text-primary-light transition-colors"
-            >
-              {t('phone2')}
-            </a>
+            {(() => {
+              const phone2 = t('phone2');
+              const phone2Href = phone2 && typeof phone2 === 'string' ? `tel:${phone2.replace(/\s/g, '')}` : '#';
+              return (
+                <a 
+                  href={phone2Href}
+                  className="text-white hover:text-primary-light transition-colors"
+                >
+                  {phone2 || ''}
+                </a>
+              );
+            })()}
           </div>
           
           <div className="flex items-center gap-2">
@@ -56,12 +68,18 @@ const Footer = () => {
               className="w-5 h-5" 
               aria-hidden="true"
             />
-            <a
-              href={`mailto:${t('email')}`}
-              className="text-white hover:text-primary-light transition-colors"
-            >
-              {t('email')}
-            </a>
+            {(() => {
+              const email = t('email');
+              const emailHref = email && typeof email === 'string' ? `mailto:${email}` : '#';
+              return (
+                <a
+                  href={emailHref}
+                  className="text-white hover:text-primary-light transition-colors"
+                >
+                  {email || ''}
+                </a>
+              );
+            })()}
           </div>
         </div>
         

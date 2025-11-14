@@ -3,8 +3,8 @@ import React from 'react';
 interface HeroBannerProps {
   title: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
-  backgroundImage?: string;
-  backgroundVideo?: string;
+  backgroundImage?: string | null;
+  backgroundVideo?: string | null;
   overlay?: boolean;
   overlayOpacity?: number;
   children?: React.ReactNode;
@@ -21,12 +21,29 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   children,
   className = '',
 }) => {
+  // backgroundImage와 backgroundVideo 검증
+  const safeBackgroundImage = backgroundImage && 
+    typeof backgroundImage === 'string' && 
+    backgroundImage !== 'null' && 
+    backgroundImage !== 'undefined' && 
+    backgroundImage.trim() !== '' 
+    ? backgroundImage.trim() 
+    : null;
+
+  const safeBackgroundVideo = backgroundVideo && 
+    typeof backgroundVideo === 'string' && 
+    backgroundVideo !== 'null' && 
+    backgroundVideo !== 'undefined' && 
+    backgroundVideo.trim() !== '' 
+    ? backgroundVideo.trim() 
+    : null;
+
   return (
     <div
       className={`relative h-screen bg-cover bg-center ${className}`}
-      style={backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : undefined}
+      style={safeBackgroundImage ? { backgroundImage: `url('${safeBackgroundImage}')` } : undefined}
     >
-      {backgroundVideo && (
+      {safeBackgroundVideo && (
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -35,7 +52,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src={backgroundVideo} type="video/mp4" />
+            <source src={safeBackgroundVideo} type="video/mp4" />
           </video>
         </div>
       )}

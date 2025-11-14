@@ -44,15 +44,13 @@ const Physioterapypage = () => {
               <img src="/Group1.png" alt="Icon" className="w-6 h-6 mr-2" />
               {t('nav1')}
             </a>
-            <a
-              href=""
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-[#5D5DF9] hover:bg-[#5D5DF0] rounded-full w-[250px] h-[60px] transition-colors duration-300 transform hover:scale-105  shadow-lg"
+            <button
+              disabled
+              className="flex items-center px-6 py-3 bg-[#5D5DF9] hover:bg-[#5D5DF0] rounded-full w-[250px] h-[60px] transition-colors duration-300 transform hover:scale-105 shadow-lg opacity-50 cursor-not-allowed"
             >
               <img src="/Group2.png" alt="Icon" className="w-6 h-6 mr-2" />
               {t('nav2')}
-            </a>
+            </button>
           </div>
         </div>
       </div>
