@@ -1,0 +1,288 @@
+.subPage {
+  background-color: #f6f6f6;
+}
+.subTop {
+  background-color: #000000;
+  color: #ffffff;
+  padding-top: 67px;
+  background: url("/mrware_sub_img01.png") no-repeat center right;
+  background-size: cover;
+  /* aspect-ratio: 5.22 / 1; */
+  height: 365px;
+
+}
+.subTop .textBox {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 95%;
+  max-width: 1560px;
+  margin: 0 auto;
+  font-family: "SUITE Variable";
+}
+.subTop .textBox .fs_36 {
+  font-weight: 800;
+}
+.subTop .textBox .fs_20 {
+  color: #b3b3b3;
+}
+.subCont {
+  width: 95%;
+  max-width: 1560px;
+  margin: 0 auto;
+  padding:100px 0;
+  font-family: "SUITE Variable";
+}
+.subCont ul {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 35px 15px;
+}
+.subCont ul li .item_box {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-width: 410px;
+  height: 300px;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px 20px;
+  box-shadow: 0 3px 15px 1px #00000010;
+  position: relative;
+  z-index: 1;
+}
+.subCont ul li .p_name_box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.subCont ul li .p_name_box .p_name {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-weight: 600;
+}
+.subCont ul li .p_name_box .p_name img {
+  width: 35px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+.subCont ul li .p_name_box .info_btn {
+  width: 30px;
+  cursor: pointer;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+.subCont ul li .p_name_box .info_btn path {
+  transition: all 0.3s;
+}
+.subCont ul li .p_name_box .info_btn:hover path {
+  stroke: #1d1d1f;
+}
+.subCont ul li .cont_txt {
+  color: #5e5e5e;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.subCont ul li .more_txt {
+  display: block;
+  margin-top: 10px;
+  font-family: "Pretendard Variable";
+}
+.subCont ul li.teal .more_txt {
+  color: #29C5BB;
+}
+.subCont ul li.orange .more_txt {
+  color: #EF694C;
+}
+.subCont ul li.purple .more_txt {
+  color: #5D5DF9;
+}
+.subCont ul li .p_bot {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.subCont ul li .p_bot .icon_wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+font-family: "Pretendard Variable";
+}
+.subCont ul li .p_bot .icon_wrap .icon_box {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.subCont ul li .p_bot .icon_wrap .icon_box img {
+  height: 35px;
+  width: auto;
+}
+.subCont ul li .p_bot .icon_wrap .icon_box p {
+  text-align: center;
+}
+.subCont ul li .p_bot .btn_wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: "Pretendard Variable";
+}
+.subCont ul li .p_bot .btn_wrap_able {
+  flex-flow: row wrap;
+  justify-content: end;
+}
+.subCont ul li .p_bot .btn_wrap_able .blank_box {
+  width: 150px;
+  visibility: hidden;
+}
+.subCont ul li .p_bot .btn_wrap a {
+  opacity: 1;
+  display: block;
+  transition: all 0.3s;
+  padding: 8px 0;
+  text-align: center;
+}
+.subCont ul li .p_bot .btn_wrap a.menual_btn {
+  width: 68px;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+}
+.subCont ul li .p_bot .btn_wrap a.dl_btn {
+  width: 110px;
+  border-radius: 5px;
+  background-color: #fff;
+  border:none;
+}
+.subCont ul li.teal .p_bot .btn_wrap a.colored{
+    background-color: #29C5BB;
+    color:#ffffff;
+}
+.subCont ul li.orange .p_bot .btn_wrap a.colored{
+    background-color: #EF694C;
+    color:#ffffff;
+}
+.subCont ul li.purple .p_bot .btn_wrap a.colored{
+    background-color: #5D5DF9;
+    color:#ffffff;
+}
+.subCont ul li .plan_btn {
+  cursor: pointer;
+  box-shadow: 0 3px 15px 1px #00000010;
+  transition: all 0.2s ease-out;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  position: relative;
+  z-index: 0;
+  padding: 25px 10px 15px 10px;
+  color: #fff;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+.subCont ul li .plan_btn:hover {
+  filter: brightness(1.06);
+}
+.subCont ul li .plan_btn p > span {
+  margin-left: 5px;
+}
+.subCont ul li.h_teal .plan_btn {
+  background-color: #29c5bb;
+}
+.subCont ul li.h_teal .plan_btn p > span {
+  color: #8a61ea;
+}
+.subCont ul li .p_bot a.icon_box.only_pc {
+  display: flex;
+}
+.subCont ul li .p_bot a.icon_box.only_mo {
+  display: none;
+}
+.subCont ul li .p_bot a.only_pc {
+  display: block;
+}
+.subCont ul li .p_bot a.only_mo {
+  display: none;
+}
+.subCont ul li .p_bot a.mo_unable {
+  opacity: 0.3;
+}
+/* 간호술기만 web바로가기 노출 */
+.subCont ul li .p_bot a.icon_box.only_nurse{
+    display: none;
+}
+.subCont ul li.teal .p_bot a.icon_box.only_nurse{
+    display: flex;
+}
+@media screen and (max-width:1320px){
+    .subCont ul {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 15px;
+    }
+}
+@media screen and (max-width:1080px) {
+    .subPage .subTop{
+        padding-top: 56px;
+    }
+    .subCont ul li .p_name_box .info_btn{display: none;}
+}
+@media screen and (max-width:890px) {
+    .subCont{
+        padding:50px 0;
+    }
+    .subCont ul {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .subCont ul li .fs_16,
+    .subCont ul li .fs_14{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:720px) {
+    .subTop{height:220px;}
+    .subCont ul li .item_box{min-width:0; padding: 20px;}
+    .subCont ul li .more_txt{text-align: right; font-size: 12px;}
+    .subCont ul li .p_bot .icon_wrap{gap:15px;}
+    .subCont ul li .p_bot .icon_wrap .icon_box img{height:25px;}
+    .subCont ul li .p_bot .icon_wrap .icon_box p{font-size: 12px;}
+    .subCont ul li .p_bot{flex-flow:column nowrap; align-items: flex-start; gap:10px;}
+    .subCont ul li .p_bot .btn_wrap{width:100%;}
+    .subCont ul li .p_bot .btn_wrap a{flex:0.5; font-size:14px; transition: none;}
+    .subCont ul li .p_bot a.icon_box.only_pc,
+    .subCont ul li .p_bot a.icon_box.only_pc.only_nurse{display: none;}
+    .subCont ul li .p_bot a.icon_box.only_mo{display: flex;}
+    .subCont ul li .p_bot a.only_pc{display: none;}
+    .subCont ul li .p_bot a.only_mo{display: block;}
+    .subCont ul li .p_bot a.unable{opacity: 0.3; cursor: not-allowed;}
+    .subCont ul li .p_bot .btn_wrap_able .blank_box{display:none;}
+    .subCont ul li .p_bot .btn_wrap a.mo_menual{background-color:#D9D9D9;border:none;}
+    .subCont ul li .p_bot .btn_wrap a.mo_dl{background-color:#fff; border:1px solid #1D1D1F;}
+    .subCont ul li .plan_btn p{font-size: 12px;}
+    .subCont ul li .plan_btn p>span{font-size:14px;}
+    .subCont ul li .p_bot .btn_wrap a.dl_btn {
+  border: 1px solid #1d1d1f;
+}
+.subCont ul li.teal .p_bot .btn_wrap a.colored,
+.subCont ul li.orange .p_bot .btn_wrap a.colored,
+.subCont ul li.purple .p_bot .btn_wrap a.colored{
+    background-color: #d9d9d9;
+    color:#000;
+    border:none;
+}
+}

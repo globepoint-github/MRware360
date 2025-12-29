@@ -69,9 +69,6 @@ export default function Home() {
       <HeroBanner
         title={title}
         subtitle={subtitle}
-        backgroundVideo="/icare_main.mp4"
-        overlay={true}
-        overlayOpacity={0.4}
       >
         <div className="px-4 sm:px-8 md:px-16 lg:px-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-[1024px] mx-auto">

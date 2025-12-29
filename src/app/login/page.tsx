@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation';
-import '../../../../i18n';
+import "./login.css";
+import '../../../i18n';
 
-const AdminLoginPage = () => {
+const LoginPage = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -40,7 +41,7 @@ const AdminLoginPage = () => {
 
     try {
       if (!formData.username || !formData.password) {
-        setError('사용자명과 비밀번호를 입력해주세요.');
+        setError('아이디와 비밀번호를 입력해주세요.');
         setIsLoading(false);
         return;
       }
@@ -95,16 +96,13 @@ const AdminLoginPage = () => {
   }
 
   return (
-    <div className="login-bg min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-lg shadow-xl p-8">
+    <div className="login-bg min-h-screen flex items-center justify-center">
+
+        <div className="loginCont">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2 font-korean">
-              관리자 로그인
+            <h1 className="fs_32">
+              {t("로그인")}
             </h1>
-            <p className="text-gray-600 text-sm font-korean">
-              Admin Login
-            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -115,8 +113,8 @@ const AdminLoginPage = () => {
             )}
 
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2 font-korean">
-                사용자명
+              <label htmlFor="username" className="fs_16">
+                {t("아이디")}
               </label>
               <input
                 type="text"
@@ -124,16 +122,16 @@ const AdminLoginPage = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-transparent outline-none transition-all font-korean"
-                placeholder="사용자명을 입력하세요"
+                className="fs_16"
+                placeholder={t("아이디pl")}
                 required
                 disabled={isLoading}
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2 font-korean">
-                비밀번호
+              <label htmlFor="password" className="fs_16">
+                {t("비밀번호")}
               </label>
               <input
                 type="password"
@@ -141,40 +139,36 @@ const AdminLoginPage = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-transparent outline-none transition-all font-korean"
-                placeholder="비밀번호를 입력하세요"
+                className="fs_16"
+                placeholder={t("비밀번호pl")}
                 required
                 disabled={isLoading}
               />
+            </div>
+            <div className='fs_14 userhelp'>
+              <label htmlFor="saveData">
+                <input type="checkbox" id="saveData"/>
+                <p>{t("아이디 저장")}</p>
+              </label>
+              <a href="#">{t("아이디/비밀번호 찾기")}</a>
             </div>
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary hover:bg-primary-hover text-white font-medium py-3 px-4 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed font-korean"
+              className=""
             >
-              {isLoading ? '로그인 중...' : '로그인'}
+              {isLoading ?  t('로그인 중') :  t('로그인')}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <button
-              onClick={() => {
-                const homePath = '/';
-                if (homePath && typeof homePath === 'string' && homePath.length > 0) {
-                  router.push(homePath);
-                }
-              }}
-              className="text-sm text-gray-600 hover:text-primary transition-colors font-korean"
-            >
-              ← 홈으로 돌아가기
-            </button>
+          <div className="mt-6 text-center signup">
+            <p className='fs_14'>{t("회원가입 멘트")} <a href="#">{t("회원가입")}</a></p>
           </div>
         </div>
-      </div>
     </div>
   );
 };
 
-export default AdminLoginPage;
+export default LoginPage;
 
