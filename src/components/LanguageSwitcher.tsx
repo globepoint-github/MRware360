@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Modal from '@/components/ui/Modal';
 
 const LanguageSwitcher: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
@@ -42,11 +42,11 @@ const LanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="absolute top-4 right-4 z-50" ref={dropdownRef}>
+    <div className="langChanger" ref={dropdownRef}>
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+          className="relative rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
           aria-label="Select language"
           aria-expanded={isOpen}
           aria-haspopup="true"
@@ -60,38 +60,35 @@ const LanguageSwitcher: React.FC = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl z-20 overflow-hidden border border-gray-200">
+          <div className="mo_list absolute left-0 top-0 mt-6 w-40 bg-white rounded-lg shadow-xl z-20 overflow-hidden border border-gray-200">
             <button
-              className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white"
+              className="block px-3 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white"
               onClick={() => changeLanguage('en')}
               aria-label="Switch to English"
             >
               English
             </button>
             <button
-              className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white border-t border-gray-200"
+              className="block px-3 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white border-t border-gray-200"
               onClick={() => changeLanguage('ko')}
               aria-label="Switch to Korean"
             >
               한국어
             </button>
             {/* 관리자 메뉴 - 한국어 아래에 표시 */}
-            <button
-              className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white border-t border-gray-200 pl-8 relative group"
+            {/* <button
+              className="block px-3 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white border-t border-gray-200 relative group"
               onClick={handleAdminClick}
               aria-label="Admin Menu"
             >
-              <div className="flex items-center justify-between">
-                <span>관리자</span>
-                <span className="text-xs text-gray-400 group-hover:text-white/70 ml-2">(전용)</span>
-              </div>
-            </button>
+              {t("관리자")}
+            </button> */}
           </div>
         )}
       </div>
 
       {/* 관리자 접근 확인 모달 */}
-      <Modal
+      {/* <Modal
         isOpen={isAdminModalOpen}
         onClose={() => setIsAdminModalOpen(false)}
         onConfirm={handleAdminConfirm}
@@ -99,7 +96,7 @@ const LanguageSwitcher: React.FC = () => {
         message={`관리자 전용 메뉴입니다.\n관리자 권한이 있는 경우에만 접근 가능합니다.\n\n로그인 페이지로 이동하시겠습니까?`}
         confirmText="이동"
         cancelText="취소"
-      />
+      /> */}
     </div>
   );
 };

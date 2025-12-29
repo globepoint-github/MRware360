@@ -43,43 +43,36 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* 배경 오버레이 */}
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="popups z-10 modal-fade-in">
+        <div className='popupCont'>
+          <h3 className="text-xl font-bold text-gray-800 mb-4 font-korean">
+            {title}
+          </h3>
+          
+          <p className="text-gray-600 mb-6 whitespace-pre-line font-korean">
+            {message}
+          </p>
 
-      {/* 모달 컨텐츠 */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-md w-full p-6 z-10 modal-fade-in">
-        <h3 className="text-xl font-bold text-gray-800 mb-4 font-korean">
-          {title}
-        </h3>
-        
-        <p className="text-gray-600 mb-6 whitespace-pre-line font-korean">
-          {message}
-        </p>
-
-        <div className="flex gap-3 justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 font-korean"
-          >
-            {cancelText}
-          </button>
-          <button
-            onClick={() => {
-              onConfirm();
-              onClose();
-            }}
-            className="px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 font-korean"
-          >
-            {confirmText}
-          </button>
+          <div className="btnWrap">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 font-korean"
+            >
+              {cancelText}
+            </button>
+            <button
+              onClick={() => {
+                onConfirm();
+                onClose();
+              }}
+              className="px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 font-korean"
+            >
+              {confirmText}
+            </button>
+          </div>
         </div>
+        
       </div>
-    </div>
   );
 };
 
