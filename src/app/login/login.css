@@ -58,7 +58,18 @@ form .userhelp>label{
     justify-content: center;
     gap:10px;
     cursor: pointer ;
+    background:url("/icon-unchecked-checkbox.png") center left no-repeat;
+    background-size:16px auto;
+    padding-left:25px;
 }
+form .userhelp input:checked + label{
+    background:url("/icon-checked-checkbox.png") center left no-repeat;
+    background-size:16px auto;
+}
+form .userhelp input{
+    display: none;
+}
+
 form .userhelp a{
     color:#949494;
 }

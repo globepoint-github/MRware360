@@ -146,8 +146,8 @@ const LoginPage = () => {
               />
             </div>
             <div className='fs_14 userhelp'>
+              <input type="checkbox" id="saveData"/>
               <label htmlFor="saveData">
-                <input type="checkbox" id="saveData"/>
                 <p>{t("아이디 저장")}</p>
               </label>
               <a href="#">{t("아이디/비밀번호 찾기")}</a>
