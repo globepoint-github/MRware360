@@ -24,10 +24,10 @@ const DownloadPage = () => {
         solutionName: "핵심간호술기",
         mainText: "sub_dl_text01",
         moreLink:"page0401",
-        mainBtn: "windowIntl",
+        mainBtn: "runNow",
         manualLink:"https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_4da40ab7f9d14b998a98d89a4810f18b/images/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%99%9C%EC%9A%A9%20%EB%A7%A4%EB%89%B4%EC%96%BC_V.02%20(1).pdf",
-        mainBtnLink_pc:"https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_81b6b8c355154c84b73c941f22933b21/PC/MRWARE%20NursingSkill.exe",
-        webBtnLink:"https://nursing360.mrware.world/",
+        mainBtnLink_pc:"https://nursing360.mrware.world/",
+        exeBtnLink:"https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_81b6b8c355154c84b73c941f22933b21/PC/MRWARE%20NursingSkill.exe",
       },
       {
         id: "solution02",
@@ -143,17 +143,17 @@ const DownloadPage = () => {
                         <p className="fs_14 fw_m">{t("manual")}</p>
                       </a>
                       <a
-                        href={item.webBtnLink}
+                        href={item.exeBtnLink}
                         target="_blank"
                         className="icon_box only_pc only_nurse"
                       >
                         <Image
                           src="/down_net_icon.png"
-                          alt="웹 버전"
+                          alt="윈도우 설치"
                           width={50}
                           height={50}
                         />
-                        <p className="fs_14 fw_m">바로가기</p>
+                        <p className="fs_14 fw_m">{t("windowIntl")}</p>
                       </a>
                     </div>
                     <div className="btn_wrap">

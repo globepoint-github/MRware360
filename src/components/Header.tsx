@@ -51,16 +51,16 @@ const Header = () => {
                                 <li>
                                     <a href="/inquiry">{t('구매/상담 문의')}</a>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="/faq">{t('자주 하는 질문')}</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
                     </ul>
                 </nav>
                 <div className="user fs_16">
-                    <a href="https://new.vrware.world/page/signup.php" target="_blank">{t('회원가입')}</a>
-                    <a href="/login" className="login">{t('로그인')}</a>
+                    {/* <a href="https://new.vrware.world/page/signup.php" target="_blank">{t('회원가입')}</a>
+                    <a href="/login" className="login">{t('로그인')}</a> */}
                     <LanguageSwitcher />
                 </div>
                 <div  className={`hamburger ${menuOpen ? 'open' : ''}`}
@@ -71,10 +71,10 @@ const Header = () => {
                 </div>
                 <div className={`mo_menu ${menuOpen ? 'open' : ''}`}>
                     <div className="user">
-                        <div className="signs fs_14">
+                        {/* <div className="signs fs_14">
                             <a href="https://new.vrware.world/page/signup.php" target="_blank">{t('회원가입')}</a>
                             <a href="/login" className="login">{t('로그인')}</a>
-                        </div>
+                        </div> */}
                         <LanguageSwitcher />
                     </div>
                     <ul className="depth01 fs_16">
@@ -97,12 +97,12 @@ const Header = () => {
                                 <li>
                                     <a href="/download">{t('다운로드')}</a>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="/inquiry">{t('구매/상담 문의')}</a>
-                                </li>
-                                <li>
+                                </li> */}
+                                {/* <li>
                                     <a href="/faq">{t('자주 하는 질문')}</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
                     </ul>

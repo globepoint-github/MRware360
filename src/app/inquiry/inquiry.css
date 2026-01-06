@@ -51,6 +51,7 @@
   color:#4b4b4b;
   background-color: #F4F4F4;
   resize: none;
+  cursor: not-allowed;
 }
 .subCont .formWrap label textarea{
   height: 140px;
@@ -130,11 +131,14 @@
   margin-top:30px;
   border:1px solid #CACACA;
   transition: all 0.3s ease-out;
+  /* 현재 기능 X */
+  cursor:not-allowed;
+  opacity: 0.5;
 }
-.subCont .formWrap .sbmtBtn:hover{
+/* .subCont .formWrap .sbmtBtn:hover{
   background-color: #ffffff;
   color:#000000;
-}
+} */
 @media screen and (max-width:1024px) {
   .subPage{
     background-position: center left;

@@ -332,7 +332,7 @@ header .cont .user .langChanger > div {
   display: inline;
 }
 header .cont .user .langChanger .mo_list{
-  
+  right:0;
 }
 .hamburger {
   display: none;

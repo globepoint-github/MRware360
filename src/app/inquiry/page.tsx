@@ -57,18 +57,19 @@ const openErrorPopup = (message: string) => {
             {t("inqSub3")}
           </p>
         </div>
+        {/* 현재 기능이 안붙어있어 모든 input disabled 처리 */}
         <form action="" method="post" className="formWrap">
           <label htmlFor="title">
             <p className="fs_16">{t("inqInput1")}</p>
-            <input type="text" placeholder={t("inqInput1")} className="fs_18" />
+            <input type="text" disabled required placeholder={t("inqInput1")} className="fs_18" />
           </label>
           <label htmlFor="name">
             <p className="fs_16">{t("inqInput2")}</p>
-            <input type="text" placeholder={t("inqInput2")} className="fs_18" />
+            <input type="text" disabled required placeholder={t("inqInput2")} className="fs_18" />
           </label>
           <label htmlFor="phone">
             <p className="fs_16">{t("inqInput3")}</p>
-            <input type="tel" placeholder={t("inqInput3")} className="fs_18" />
+            <input type="tel" disabled required placeholder={t("inqInput3")} className="fs_18" />
           </label>
           <label htmlFor="userEmail">
             <p className="fs_16">{t("inqInput4")}</p>
@@ -76,11 +77,13 @@ const openErrorPopup = (message: string) => {
               type="email"
               placeholder={t("inqInput4")}
               className="fs_18"
+              required
+              disabled
             />
           </label>
           <label htmlFor="message">
             <p className="fs_16">{t("inqInput5")}</p>
-            <textarea placeholder={t("inqInput5")} className="fs_18" />
+            <textarea disabled required placeholder={t("inqInput5")} className="fs_18" />
           </label>
           <label htmlFor="file" className="fileAttach">
             <div>
@@ -89,6 +92,7 @@ const openErrorPopup = (message: string) => {
                 className="fileBtn"
                 onChange={handleFileChange}
                 accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.txt"
+                disabled
               />
               <p className="fs_16">{t("inqInput6")}</p>
             </div>

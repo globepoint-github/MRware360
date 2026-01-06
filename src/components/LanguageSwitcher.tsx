@@ -60,7 +60,7 @@ const LanguageSwitcher: React.FC = () => {
         </button>
 
         {isOpen && (
-          <div className="mo_list absolute left-0 top-0 mt-6 w-40 bg-white rounded-lg shadow-xl z-20 overflow-hidden border border-gray-200">
+          <div className="mo_list absolute top-0 mt-6 w-40 bg-white rounded-lg shadow-xl z-20 overflow-hidden border border-gray-200">
             <button
               className="block px-3 py-3 text-sm font-medium text-gray-700 hover:bg-primary hover:text-white w-full text-left transition-colors focus:outline-none focus:bg-primary focus:text-white"
               onClick={() => changeLanguage('en')}
