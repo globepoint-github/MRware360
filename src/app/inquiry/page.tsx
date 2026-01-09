@@ -100,10 +100,7 @@ const InquiryPage = () => {
       }
   };
 
-  // ... (previous state)
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // ... (previous functions)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
