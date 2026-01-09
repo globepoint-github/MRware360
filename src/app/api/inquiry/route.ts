@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     // 1. Verify svg-captcha
     const captchaCookie = cookies().get("captcha")?.value;
 
-    if (!captchaCookie || !userCaptcha || captchaCookie !== userCaptcha) {
+    if (!captchaCookie || !userCaptcha || captchaCookie.toLowerCase() !== userCaptcha.toLowerCase()) {
         return NextResponse.json(
             { message: "Invalid CAPTCHA" },
             { status: 400 }
