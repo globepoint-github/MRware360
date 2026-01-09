@@ -8,11 +8,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const captcha = svgCaptcha.create({
     size: 6,
-    noise: 2,
-    color: true,
-    background: "#ffffff", // High contrast white background
+    noise: 0, // Remove noise lines for clarity
+    color: false,
+    background: "#ffffff",
   });
-
+  
   // Set cookie
   // Note: Vercel/Next.js serverless functions might strip some headers depending on config,
   // but standard Set-Cookie usually works.

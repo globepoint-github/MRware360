@@ -173,6 +173,12 @@
     color: #333; /* Darker text */
     font-weight: 600; /* Bolder text */
 }
+
+/* Force captcha SVG paths to be black */
+.captchaImage svg path {
+    fill: #000000 !important;
+    stroke: #000000 !important;
+}
 /* .subCont .formWrap .sbmtBtn:hover{
   background-color: #ffffff;
   color:#000000;
