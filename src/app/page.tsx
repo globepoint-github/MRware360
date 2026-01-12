@@ -77,7 +77,7 @@ const Page = () => {
       </div>
       <Section04 />
       <Section05 />
-      {/* <Section06 /> */}
+      <Section06 />
       <Section07 />
       <Section08 />
     </div>

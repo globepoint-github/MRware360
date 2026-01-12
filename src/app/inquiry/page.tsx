@@ -106,7 +106,7 @@ const InquiryPage = () => {
     e.preventDefault();
 
     if (!isCaptchaValid) {
-      alert("보안 문자가 일치하지 않습니다.");
+      alert(t("alertText01"));
       return;
     }
 
@@ -166,9 +166,9 @@ const InquiryPage = () => {
         {isModalOpen && (
             <div className="modal-overlay">
                 <div className="modal-content">
-                    <h3>문의가 접수되었습니다</h3>
-                    <p>담당자가 내용을 확인 후<br/>빠른 시일 내에 답변 드리겠습니다.</p>
-                    <button className="modal-close-btn" onClick={closeModal}>확인</button>
+                    <h3>{t("modalText01")}</h3>
+                    <p>{t("modalText02")}</p>
+                    <button className="modal-close-btn" onClick={closeModal}>{t("modalText03")}</button>
                 </div>
             </div>
         )}
@@ -262,7 +262,7 @@ const InquiryPage = () => {
               readOnly
               value={fileName}
               placeholder={t("inqInput7")}
-              className="fileName"
+              className="fileName fs_18"
             />
           </label>
           
@@ -272,19 +272,19 @@ const InquiryPage = () => {
                     className="captchaImage" 
                     dangerouslySetInnerHTML={{ __html: captchaSvg }} 
                     onClick={fetchCaptcha}
-                    title="클릭하여 새로고침"
+                    title={t("inqCapcha02")}
                 />
                 <input
                     type="text"
                     value={captchaInput}
                     onChange={handleCaptchaChange}
-                    placeholder="보안 문자를 입력하세요"
-                    className="captchaInput"
+                    placeholder={t("inqCapcha01")}
+                    className="captchaInput fs_18"
                     style={{ borderColor: isCaptchaValid ? "#4CAF50" : (captchaInput.length >= 6 ? "#f44336" : "#ddd") }}
                 />
             </div>
             <p className="fs_14 captcha-help">
-                 * 이미지를 클릭하면 새로운 보안 문자가 생성됩니다. 
+                 * {t("inqCapcha02")}
                  {isCaptchaValid && <span style={{ color: "#4CAF50", fontWeight: "bold", marginLeft: "10px" }}>✓ 일치합니다</span>}
             </p>
           </div>

@@ -152,7 +152,7 @@
     background: #fff;
     cursor: pointer;
     overflow: hidden;
-    height: 50px;
+    height: 45px;
     width: 150px; /* Force width */
     display: flex;
     align-items: center;
@@ -164,14 +164,14 @@
 }
 
 .captchaInput {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 3px;
+    padding: 8px 14px;
+    color: #4b4b4b;
+    background-color: #f4f4f4;
     flex: 1;
-    height: 50px;
-    color: #333; /* Darker text */
-    font-weight: 600; /* Bolder text */
+}
+.captchaInput::placeholder {
+  color: #979797;
 }
 
 /* Force captcha SVG paths to be black */
@@ -194,6 +194,9 @@
   .subCont div,
   .subCont form {
     width: 100%;
+  }
+  .subCont div.captchaImage{
+    width:30%;
   }
 }
 @media screen and (max-width: 890px) {

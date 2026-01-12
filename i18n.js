@@ -23,6 +23,8 @@ const resources = {
       "요양보호사": "Caregiving",
       "관리자":"Admin",
       // 헤더
+      "라이선스 구매":"License Purchase",
+      "라이선스 구매링크":"https://new.vrware.world/page_en/payment.php",
       "고객지원":"Support",
       "다운로드": "Download",
       "구매/상담 문의": "Purchase / Inquiry",
@@ -66,16 +68,14 @@ const resources = {
       // 메인 Section 06
       "sec06Text1-1":"FAQ",
       "sec06Text1-2":"Common questions and answers, clearly explained.",
-      "faq1Question": "Q1",
-      "faq1Answer": "A1",
-      "faq2Question": "Q2",
-      "faq2Answer": "A2",
-      "faq3Question": "Q3",
-      "faq3Answer": "A3",
-      "faq4Question": "Q4",
-      "faq4Answer": "A4",
-      "faq5Question": "Q5",
-      "faq5Answer": "A5",
+      "faq1Question": "What are the benefits of 360° VR-based practice?",
+      "faq1Answer": "It provides an immersive experience that simulates real-life patient care, allowing users to repeat various practice scenarios anytime, anywhere without the constraints of time or space.",
+      "faq2Question": "What information can I access in the LMS?",
+      "faq2Answer": "Students can view their quiz results and scores during practice. <1></1>Instructors can track students’ progress and provide feedback.",
+      "faq3Question": "What platforms can I use to access MRWARE?",
+      "faq3Answer": "MRWARE can be accessed in two ways: directly via a web browser or by downloading the installation file. <1></1>You can use it on any PC or laptop, anytime, anywhere. Core nursing skills modules can also run on HMD devices like Meta Quest 2 or PICO G2 4K.",
+      "faq4Question": "Where can I download MRWARE?",
+      "faq4Answer": "A license is required to use MRWARE (Core Nursing Skills, Caregiving, Physical Therapy). <1></1>Individuals can purchase licenses through Customer Support → License Purchase, while schools or organizations can buy them from the <0>VRWARE STORE</0>.",
       // 메인 Section 08
       "sec08Text1-1":"Experience beyond space.",
       "sec08Text1-2":"Discover it first with MRWARE.",
@@ -113,6 +113,12 @@ const resources = {
       "inqInput6":"Choose File",
       "inqInput7":"No file selected",
       "inqInput8":"Submit",
+      "inqCapcha01":"Enter the security code.",
+      "inqCapcha02":"Click the image to refresh the CAPTCHA.",
+      "alertText01":"The security code does not match.",
+      "modalText01":"Your inquiry has been submitted.",
+      "modalText02":"Our team will review your message and get back to you as soon as possible.",
+      "modalText03":"OK",
       // ===================================================================
       // 풋터
       // ===================================================================
@@ -293,6 +299,8 @@ const resources = {
       "요양보호사": "요양보호사",
       "관리자":"관리자",
       // 헤더
+      "라이선스 구매":"라이선스 구매",
+      "라이선스 구매링크":"https://new.vrware.world/page/payment.php",
       "고객지원":"고객지원",
       "다운로드": "다운로드",
       "구매/상담 문의": "구매/상담 문의",
@@ -336,16 +344,14 @@ const resources = {
       // 메인 Section 06
       "sec06Text1-1":"자주 하는 질문",
       "sec06Text1-2":"자주 나오는 질문과 답을 쉽게 정리했습니다.",
-      "faq1Question": "질문1",
-      "faq1Answer": "답변1",
-      "faq2Question": "질문2",
-      "faq2Answer": "답변2",
-      "faq3Question": "질문3",
-      "faq3Answer": "답변3",
-      "faq4Question": "질문4",
-      "faq4Answer": "답변4",
-      "faq5Question": "질문5",
-      "faq5Answer": "답변5",
+      "faq1Question": "360 VR 기반 실습은 어떤 장점이 있나요?",
+      "faq1Answer": "실제와 비슷한 환경에서 환자를 대상으로 수행하는 듯한 몰입감 높은 경험을 제공하여 시간 및 공간의 제약 없이 다양한 상황별 주제 중 원하는 실습을 반복 수행할 수 있다는 장점이 있습니다.",
+      "faq2Question": "LMS에서는 어떤 정보를 확인할 수 있나요?",
+      "faq2Answer": "학생이라면, 실습 중 진행한 퀴즈에 대한 결과와 점수를 확인할 수 있습니다. <1></1>선생님이라면, 학생들의 학습 현황을 확인하고 피드백 내용을 작성할 수 있습니다. ",
+      "faq3Question": "어떤 접속 환경에서 사용할 수 있나요?",
+      "faq3Answer": "MRWARE 서비스는 2가지 접속환경을 제공합니다. 웹페이지에서 바로 실행하거나, 설치 파일을 다운로드하여 실행할 수 있습니다. <1></1>PC(컴퓨터, 노트북)만 있으면 언제 어디서든 접속 가능합니다.  핵심간호술기는 PC는 물론 HMD 기기(Meta Quest 2, PICO G2 4K)에서 실행할 수 있습니다.",
+      "faq4Question": "어디서 다운로드 받을 수 있나요?",
+      "faq4Answer": "MRWARE 서비스(핵심간호술기, 요양보호, 물리치료)를 이용하기 위해서는 라이선스를 구매해야 합니다. <1></1>개인이라면 고객지원 - 라이선스 구매에서, 학교 또는 기관이라면 <0>VRWARE STORE</0>에서 구매할 수 있습니다.",
       // 메인 Section 08
       "sec08Text1-1":"공간 너머의 경험을,",
       "sec08Text1-2":"MRWARE로 먼저 만나보세요",
@@ -384,6 +390,12 @@ const resources = {
       "inqInput6":"파일 찾기",
       "inqInput7":"선택된 파일이 없습니다.",
       "inqInput8":"문의 보내기",
+      "inqCapcha01":"보안 문자를 입력하세요.",
+      "inqCapcha02":"이미지를 클릭하면 새로운 보안 문자가 생성됩니다.",
+      "alertText01":"보안 문자가 일치하지 않습니다.",
+      "modalText01":"문의가 접수되었습니다.",
+      "modalText02":"담당자가 내용을 확인 후 빠른 시일 내에 답변 드리겠습니다.",
+      "modalText03":"확인",
       // ===================================================================
       // 풋터
       // ===================================================================

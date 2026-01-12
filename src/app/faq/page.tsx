@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import "../../../i18n";
 import "./faq.css";
 
@@ -21,7 +21,7 @@ const FAQPage = () => {
   };
 
    // FAQ 키 배열
-  const faqKeys = ['faq1', 'faq2', 'faq3','faq4','faq5'];
+  const faqKeys = ['faq1', 'faq2', 'faq3','faq4'];
 
   return (
     <div className="subPage">
@@ -54,7 +54,21 @@ const FAQPage = () => {
                 <div className='answer'>
                   <div>
                     <span className='fs_26'>A</span>
-                    <p className='fs_20'>{t(`${faqKey}Answer`)}</p>    
+                    <p className='fs_20'>
+                      <Trans
+                      i18nKey={`${faqKey}Answer`}
+                      components={[
+                        <a
+                          key="store-link"
+                          href="https://vrware.store/index.html"
+                          className="faq-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />,
+                         <br key="line-break" />
+                      ]}
+                    />
+                      </p>    
                   </div>
                 </div>
               </li>

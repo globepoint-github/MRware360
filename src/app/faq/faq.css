@@ -52,7 +52,7 @@
   background-color: white;
   border-radius: 20px;
   color: #454545;
-  font-weight: 600;
+  font-weight: 500;
   position: relative;
   z-index: 1;
 }
@@ -110,6 +110,9 @@
 .subCont ul li .answer span {
   background-color: #ffffff;
   color: #141414;
+}
+.subCont ul li .answer a{
+  text-decoration: underline;
 }
 
 @media screen and (max-width:1024px) {

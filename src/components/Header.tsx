@@ -46,14 +46,17 @@ const Header = () => {
                             <a href="/download">{t('고객지원')}</a>
                             <ul className={`depth2 fs_16 ${open ? 'open' : ''}`}>
                                 <li>
+                                    <a href={t("라이선스 구매링크")} target="_blank">{t('라이선스 구매')}</a>
+                                </li>
+                                <li>
                                     <a href="/download">{t('다운로드')}</a>
                                 </li>
                                 <li>
                                     <a href="/inquiry">{t('구매/상담 문의')}</a>
                                 </li>
-                                {/* <li>
+                                <li>
                                     <a href="/faq">{t('자주 하는 질문')}</a>
-                                </li> */}
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -95,14 +98,17 @@ const Header = () => {
                             <button>{t('고객지원')}</button>
                             <ul className={`depth2 fs_14 ${open ? 'open' : ''}`}>
                                 <li>
+                                    <a href={t("라이선스 구매링크")}>{t('라이선스 구매')}</a>
+                                </li>
+                                <li>
                                     <a href="/download">{t('다운로드')}</a>
                                 </li>
-                                {/* <li>
+                                <li>
                                     <a href="/inquiry">{t('구매/상담 문의')}</a>
-                                </li> */}
-                                {/* <li>
+                                </li>
+                                <li>
                                     <a href="/faq">{t('자주 하는 질문')}</a>
-                                </li> */}
+                                </li>
                             </ul>
                         </li>
                     </ul>

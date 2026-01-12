@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from "react-i18next";
 
 export default function Section06() {
   const { t, i18n } = useTranslation();
@@ -16,7 +16,7 @@ export default function Section06() {
   };
 
    // FAQ 키 배열
-  const faqKeys = ['faq1', 'faq2', 'faq3','faq4','faq5'];
+  const faqKeys = ['faq1', 'faq2', 'faq3','faq4'];
 
   useEffect(() => {
     const savedLang = localStorage.getItem('lang');
@@ -55,7 +55,21 @@ export default function Section06() {
                 <div className='answer'>
                   <div>
                     <span className='fs_26'>A</span>
-                    <p className='fs_20'>{t(`${faqKey}Answer`)}</p>    
+                    <p className='fs_20'>
+                      <Trans
+                      i18nKey={`${faqKey}Answer`}
+                      components={[
+                        <a
+                          key="store-link"
+                          href="https://vrware.store/index.html"
+                          className="faq-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />,
+                         <br key="line-break" />
+                      ]}
+                    />
+                      </p>    
                   </div>
                 </div>
               </li>

@@ -862,6 +862,9 @@ header .cont .user .langChanger .mo_list{
   background-color: #ffffff;
   color: #141414;
 }
+.sec06 .secCont ul li .answer a{
+  text-decoration: underline;
+}
 @media screen and (max-width:500px) {
   .sec06 .secCont ul li .question{
     padding:14px 20px;
