@@ -67,6 +67,9 @@
   justify-content: flex-start;
   gap: 20px;
 }
+.subCont ul li .answer > div{
+  align-items: flex-start;
+}
 .subCont ul li .question svg {
   transform: rotate(180deg);
   transition: all 0.2s ease-in;

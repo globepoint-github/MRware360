@@ -818,6 +818,9 @@ header .cont .user .langChanger .mo_list{
   justify-content: flex-start;
   gap: 20px;
 }
+.sec06 .secCont ul li .answer > div{
+  align-items: flex-start;
+}
 .sec06 .secCont ul li .question svg {
   transform: rotate(180deg);
   transition: all 0.2s ease-in;
