@@ -38,7 +38,20 @@ export default function Section0() {
                 <p className='fs_16'>{t("sec05Text2-2")}</p>
               </div>
               <button
-              onClick={() => window.location.href = 'https://nursing360.mrware.world/'}
+              onClick={() => {
+                let ssoLinks = {};
+                try {
+                  const stored = localStorage.getItem('ssoLinks');
+                  if (stored && stored !== "undefined") {
+                    ssoLinks = JSON.parse(stored);
+                  }
+                } catch (e) {
+                  console.error("Failed to parse ssoLinks", e);
+                }
+                console.log("Navigating with links:", ssoLinks);
+                const url = (ssoLinks as any).nursing360 || 'https://nursing360.mrware.world/';
+                window.open(url, '_blank');
+              }}
                className='btn fs_16'>{t("sec05Text2-1")}</button>
             </div>
           </div>
@@ -56,7 +69,19 @@ export default function Section0() {
                 <p className='fs_16'>{t("sec05Text2-3")}</p>
               </div>
               <button
-              onClick={() => window.location.href = 'https://caregiver360.mrware.world/'}
+              onClick={() => {
+                let ssoLinks = {};
+                try {
+                  const stored = localStorage.getItem('ssoLinks');
+                  if (stored && stored !== "undefined") {
+                    ssoLinks = JSON.parse(stored);
+                  }
+                } catch (e) {
+                   console.error("Failed to parse ssoLinks", e);
+                }
+                const url = (ssoLinks as any).caregiver360 || 'https://caregiver360.mrware.world/';
+                window.open(url, '_blank');
+              }}
               className='btn fs_16'>{t("sec05Text2-1")}</button>
             </div>
           </div>
@@ -74,7 +99,19 @@ export default function Section0() {
                 <p className='fs_16'>{t("sec05Text2-4")}</p>
               </div>
               <button 
-              onClick={() => window.location.href = 'https://rehab360.mrware.world'}
+              onClick={() => {
+                let ssoLinks = {};
+                try {
+                  const stored = localStorage.getItem('ssoLinks');
+                  if (stored && stored !== 'undefined') {
+                    ssoLinks = JSON.parse(stored);
+                  }
+                } catch (e) {
+                   console.error("Failed to parse ssoLinks", e);
+                }
+                const url = (ssoLinks as any).rehab360 || 'https://rehab360.mrware.world';
+                window.open(url, '_blank');
+              }}
               className='btn fs_16'>{t("sec05Text2-1")}</button>
             </div>
           </div>

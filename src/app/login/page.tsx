@@ -11,8 +11,8 @@ const LoginPage = () => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    member_id: '',
+    member_pw: '',
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -40,38 +40,38 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      if (!formData.username || !formData.password) {
+      if (!formData.member_id || !formData.member_pw) {
         setError('아이디와 비밀번호를 입력해주세요.');
         setIsLoading(false);
         return;
       }
 
-      // 실제 로그인 API 호출
-      const response = await fetch('/api/admin/login', {
+      // Call Global Login API
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
+          member_id: formData.member_id,
+          member_pw: formData.member_pw,
         }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        // 로그인 성공 - 토큰 저장
-        if (data.token && typeof data.token === 'string') {
-          localStorage.setItem('adminToken', data.token);
-        }
-        if (data.username && typeof data.username === 'string') {
-          localStorage.setItem('adminUsername', data.username);
+        if (data.user) {
+          console.log('User Data:', data.user); // Debug: Check if sso_links exists
+          localStorage.setItem('userInfo', JSON.stringify(data.user));
+          if (data.user.member_id) {
+             localStorage.setItem('username', data.user.member_id);
+          }
+          if (data.user.sso_links) {
+             localStorage.setItem('ssoLinks', JSON.stringify(data.user.sso_links));
+          }
         }
         
-        // 관리자 대시보드로 이동
-        const dashboardPath = '/admin/dashboard';
-        if (dashboardPath && typeof dashboardPath === 'string' && dashboardPath.length > 0) {
-          router.push(dashboardPath);
-        }
+        // Force reload to update Header immediately
+        window.location.href = '/';
       } else {
         setError(data.error || '로그인에 실패했습니다.');
       }
@@ -118,9 +118,9 @@ const LoginPage = () => {
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={formData.username}
+                id="member_id"
+                name="member_id"
+                value={formData.member_id}
                 onChange={handleChange}
                 className="fs_16"
                 placeholder={t("아이디pl")}
@@ -135,9 +135,9 @@ const LoginPage = () => {
               </label>
               <input
                 type="password"
-                id="password"
-                name="password"
-                value={formData.password}
+                id="member_pw"
+                name="member_pw"
+                value={formData.member_pw}
                 onChange={handleChange}
                 className="fs_16"
                 placeholder={t("비밀번호pl")}
