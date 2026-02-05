@@ -34,7 +34,7 @@ const resources = {
       "로그인 중":"Signing in...",
       // 로그인 페이지
       "아이디":"ID",
-      "아이디pl":"Enter your email",
+      "아이디pl":"Enter your ID",
       "비밀번호":"Password",
       "비밀번호pl":"Enter your password",
       "아이디 저장":"Remember ID",
@@ -309,7 +309,7 @@ const resources = {
       "로그인":"로그인",
       // 로그인 페이지
       "아이디":"아이디",
-      "아이디pl":"이메일을 입력해 주세요.",
+      "아이디pl":"아이디를 입력해 주세요.",
       "비밀번호":"비밀번호",
       "비밀번호pl":"비밀번호를 입력해 주세요.",
       "아이디 저장":"아이디 저장",
