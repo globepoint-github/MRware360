@@ -16,12 +16,23 @@ const LoginPage = () => {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [saveId, setSaveId] = useState(false);
 
   useEffect(() => {
     const savedLang = localStorage.getItem('lang');
     if (savedLang) {
       i18n.changeLanguage(savedLang);
     }
+
+    const savedMemberId = localStorage.getItem('savedMemberId');
+    if (savedMemberId) {
+      setFormData(prev => ({
+        ...prev,
+        member_id: savedMemberId,
+      }));
+      setSaveId(true);
+    }
+
     setMounted(true);
   }, [i18n]);
 
@@ -46,7 +57,6 @@ const LoginPage = () => {
         return;
       }
 
-      // Call Global Login API
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,18 +69,23 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (data.success) {
+        if (saveId) {
+          localStorage.setItem('savedMemberId', formData.member_id);
+        } else {
+          localStorage.removeItem('savedMemberId');
+        }
+
         if (data.user) {
-          console.log('User Data:', data.user); // Debug: Check if sso_links exists
+          console.log('User Data:', data.user);
           localStorage.setItem('userInfo', JSON.stringify(data.user));
           if (data.user.member_id) {
-             localStorage.setItem('username', data.user.member_id);
+            localStorage.setItem('username', data.user.member_id);
           }
           if (data.user.sso_links) {
-             localStorage.setItem('ssoLinks', JSON.stringify(data.user.sso_links));
+            localStorage.setItem('ssoLinks', JSON.stringify(data.user.sso_links));
           }
         }
-        
-        // Force reload to update Header immediately
+
         window.location.href = '/';
       } else {
         setError(data.error || '로그인에 실패했습니다.');
@@ -98,77 +113,82 @@ const LoginPage = () => {
   return (
     <div className="login-bg min-h-screen flex items-center justify-center">
 
-        <div className="loginCont">
-          <div className="text-center mb-8">
-            <h1 className="fs_32">
-              {t("로그인")}
-            </h1>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm font-korean">
-                {error}
-              </div>
-            )}
-
-            <div>
-              <label htmlFor="username" className="fs_16">
-                {t("아이디")}
-              </label>
-              <input
-                type="text"
-                id="member_id"
-                name="member_id"
-                value={formData.member_id}
-                onChange={handleChange}
-                className="fs_16"
-                placeholder={t("아이디pl")}
-                required
-                disabled={isLoading}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="fs_16">
-                {t("비밀번호")}
-              </label>
-              <input
-                type="password"
-                id="member_pw"
-                name="member_pw"
-                value={formData.member_pw}
-                onChange={handleChange}
-                className="fs_16"
-                placeholder={t("비밀번호pl")}
-                required
-                disabled={isLoading}
-              />
-            </div>
-            <div className='fs_14 userhelp'>
-              <input type="checkbox" id="saveData"/>
-              <label htmlFor="saveData">
-                <p>{t("아이디 저장")}</p>
-              </label>
-              <div>
-                <a href={t("아이디 찾기 링크")} target='_blank' >{t("아이디 찾기")}</a>/
-                <a href={t("비밀번호 찾기 링크")} target='_blank'>{t("비밀번호 찾기")}</a>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className=""
-            >
-              {isLoading ?  t('로그인 중') :  t('로그인')}
-            </button>
-          </form>
-
-          <div className="mt-6 text-center signup">
-            <p className='fs_14'>{t("회원가입 멘트")} <a href={t("회원가입 링크")} target='_blank'>{t("회원가입")}</a></p>
-          </div>
+      <div className="loginCont">
+        <div className="text-center mb-8">
+          <h1 className="fs_32">
+            {t("로그인")}
+          </h1>
         </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm font-korean">
+              {error}
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="username" className="fs_16">
+              {t("아이디")}
+            </label>
+            <input
+              type="text"
+              id="member_id"
+              name="member_id"
+              value={formData.member_id}
+              onChange={handleChange}
+              className="fs_16"
+              placeholder={t("아이디pl")}
+              required
+              disabled={isLoading}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="fs_16">
+              {t("비밀번호")}
+            </label>
+            <input
+              type="password"
+              id="member_pw"
+              name="member_pw"
+              value={formData.member_pw}
+              onChange={handleChange}
+              className="fs_16"
+              placeholder={t("비밀번호pl")}
+              required
+              disabled={isLoading}
+            />
+          </div>
+          <div className='fs_14 userhelp'>
+            <input
+              type="checkbox"
+              id="saveData"
+              checked={saveId}
+              onChange={(e) => setSaveId(e.target.checked)}
+            />
+            <label htmlFor="saveData">
+              <p>{t("아이디 저장")}</p>
+            </label>
+            <div>
+              <a href={t("아이디 찾기 링크")} target='_blank' >{t("아이디 찾기")}</a>/
+              <a href={t("비밀번호 찾기 링크")} target='_blank'>{t("비밀번호 찾기")}</a>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className=""
+          >
+            {isLoading ? t('로그인 중') : t('로그인')}
+          </button>
+        </form>
+
+        <div className="mt-6 text-center signup">
+          <p className='fs_14'>{t("회원가입 멘트")} <a href={t("회원가입 링크")} target='_blank'>{t("회원가입")}</a></p>
+        </div>
+      </div>
     </div>
   );
 };
