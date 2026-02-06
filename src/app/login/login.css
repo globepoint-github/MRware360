@@ -69,7 +69,9 @@ form .userhelp input:checked + label{
 form .userhelp input{
     display: none;
 }
-
+form .userhelp>div{
+    color:#949494;
+}
 form .userhelp a{
     color:#949494;
 }

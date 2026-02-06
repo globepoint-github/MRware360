@@ -150,7 +150,10 @@ const LoginPage = () => {
               <label htmlFor="saveData">
                 <p>{t("아이디 저장")}</p>
               </label>
-              <a href="#">{t("아이디/비밀번호 찾기")}</a>
+              <div>
+                <a href={t("아이디 찾기 링크")} target='_blank' >{t("아이디 찾기")}</a>/
+                <a href={t("비밀번호 찾기 링크")} target='_blank'>{t("비밀번호 찾기")}</a>
+              </div>
             </div>
 
             <button
@@ -163,7 +166,7 @@ const LoginPage = () => {
           </form>
 
           <div className="mt-6 text-center signup">
-            <p className='fs_14'>{t("회원가입 멘트")} <a href="#">{t("회원가입")}</a></p>
+            <p className='fs_14'>{t("회원가입 멘트")} <a href={t("회원가입 링크")} target='_blank'>{t("회원가입")}</a></p>
           </div>
         </div>
     </div>
