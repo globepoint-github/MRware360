@@ -34,14 +34,14 @@ const Header = () => {
                 <nav>
                     <ul className="fs_18">
                         <li>
-                            <a href={`${isEnglish ? 'https://vrware.world/page_en/page_0401.php' : 'https://vrware.world/page/page_0401.php'}`} target="_blank">
+                            <a href="/nursing">
                             {t('핵심간호술기')}</a>
                         </li>
                         <li>
-                            <a href={`${isEnglish ? 'https://vrware.world/page_en/page_0403.php' : 'https://vrware.world/page/page_0403.php'}`}  target="_blank">{t('물리치료')}</a>
+                            <a href="/Physiotherapy">{t('물리치료')}</a>
                         </li>
                         <li>
-                            <a href={`${isEnglish ? 'https://vrware.world/page_en/page_0402.php' : 'https://vrware.world/page/page_0402.php'}`}  target="_blank">{t('요양보호')}</a>
+                            <a href="/caregiver">{t('요양보호')}</a>
                         </li>
                         <li 
                             onMouseEnter={() => setOpen(true)}

@@ -1,511 +1,423 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import HeroBanner from '@/components/ui/HeroBanner';
-import Button from '@/components/ui/Button';
-import Section from '@/components/ui/Section';
-import FeatureCard from '@/components/ui/FeatureCard';
-import '../../../i18n';
+import { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import styles from "./nursing.module.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "../../../i18n";
+
+const TAB_LIST = [
+  { id: "tab1", key1: "nursing.sec03.tab1_1", key2: "nursing.sec03.tab1_2", src: "/img_nursing/video1.mp4" },
+  { id: "tab2", key1: "nursing.sec03.tab2_1", key2: "nursing.sec03.tab2_2", src: "/img_nursing/video2.mp4" },
+  { id: "tab3", key1: "nursing.sec03.tab3_1", key2: "nursing.sec03.tab3_2", src: "/img_nursing/video3.mp4" },
+  { id: "tab4", key1: "nursing.sec03.tab4_1", key2: "nursing.sec03.tab4_2", src: "/img_nursing/video4.mp4" },
+];
+
+// slideKeys: 각 슬라이드의 줄별 키 배열
+const SLIDES = [
+  { keys: ["nursing.sec06.slide1_1", "nursing.sec06.slide1_2", "nursing.sec06.slide1_3"], bg: styles.bg_black },
+  { keys: ["nursing.sec06.slide2_1", "nursing.sec06.slide2_2", "nursing.sec06.slide2_3"], bg: styles.bg_white },
+  { keys: ["nursing.sec06.slide3_1", "nursing.sec06.slide3_2", "nursing.sec06.slide3_3"], bg: styles.bg_purple },
+  { keys: ["nursing.sec06.slide4_1", "nursing.sec06.slide4_2", "nursing.sec06.slide4_3"], bg: styles.bg_black },
+  { keys: ["nursing.sec06.slide5_1", "nursing.sec06.slide5_2", "nursing.sec06.slide5_3"], bg: styles.bg_white },
+  { keys: ["nursing.sec06.slide6_1", "nursing.sec06.slide6_2", "nursing.sec06.slide6_3"], bg: styles.bg_teal },
+  { keys: ["nursing.sec06.slide7_1", "nursing.sec06.slide7_2"], bg: styles.bg_white },
+  { keys: ["nursing.sec06.slide8_1", "nursing.sec06.slide8_2", "nursing.sec06.slide8_3"], bg: styles.bg_purple },
+  { keys: ["nursing.sec06.slide9_1", "nursing.sec06.slide9_2", "nursing.sec06.slide9_3"], bg: styles.bg_black },
+  { keys: ["nursing.sec06.slide10_1", "nursing.sec06.slide10_2"], bg: styles.bg_teal },
+];
+
+const SEC08_LIST = [
+  {
+    img: "/img_nursing/mrware_sec08_img01.png",
+    href: "https://nursing360.mrware.world/",
+    btnKey: "nursing.sec08.btn1",
+  },
+  {
+    img: "/img_nursing/mrware_sec08_img02.png",
+    href: "https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_81b6b8c355154c84b73c941f22933b21/PC/MRWARE%20NursingSkill.exe",
+    btnKey: "nursing.sec08.btn2",
+  },
+];
+
+const LOGO_LIST = Array.from({ length: 11 }, (_, i) => ({
+  src: `/mrware_logo${String(i + 1).padStart(2, "0")}.png`,
+  w: 300,
+  h: i === 0 ? 50 : 30,
+}));
 
 const NursingPage = () => {
   const { t, i18n } = useTranslation();
+  const [activeTab, setActiveTab] = useState("tab1");
+  const [isPlaying, setIsPlaying] = useState(true);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('lang');
+    const savedLang = localStorage.getItem("lang");
     if (savedLang) {
       i18n.changeLanguage(savedLang);
     }
   }, [i18n]);
 
+  const SEC04_LIST = [
+    {
+      img: "/img_nursing/mrware_sec03_img01.png",
+      labelKey: "nursing.sec04.student.label",
+      renderText: () => (
+        <>
+          <span className={styles.c_teal}>{t("nursing.sec04.student.text1")}</span>
+          {t("nursing.sec04.student.text2")}
+          <span className={styles.c_teal}>{t("nursing.sec04.student.text3")}</span>
+        </>
+      ),
+    },
+    {
+      img: "/img_nursing/mrware_sec03_img02.png",
+      labelKey: "nursing.sec04.teacher.label",
+      renderText: () => (
+        <>
+          {t("nursing.sec04.teacher.text1")}
+          <span className={styles.c_teal}>{t("nursing.sec04.teacher.text2")}</span>
+          {t("nursing.sec04.teacher.text3")}
+        </>
+      ),
+    },
+    {
+      img: "/img_nursing/mrware_sec03_img03.png",
+      labelKey: "nursing.sec04.school.label",
+      renderText: () => (
+        <>
+          <span className={styles.c_teal}>{t("nursing.sec04.school.text1")}</span>
+          {t("nursing.sec04.school.text2")}
+          <span className={styles.c_teal}>{t("nursing.sec04.school.text3")}</span>
+          {t("nursing.sec04.school.text4")}
+        </>
+      ),
+    },
+  ];
+
+  const SEC05_LIST = [
+    { num: "01", textKey: "nursing.sec05.item1" },
+    { num: "02", textKey: "nursing.sec05.item2" },
+    { num: "03", textKey: "nursing.sec05.item3" },
+  ];
+
+  type Sec07Item = { renderText: () => React.ReactNode; isNew?: boolean };
+
+  const SEC07_LIST: Sec07Item[][] = [
+    [
+      { renderText: () => t("nursing.sec07.item01") },
+      { renderText: () => t("nursing.sec07.item02") },
+      { renderText: () => t("nursing.sec07.item03") },
+      { renderText: () => <>{t("nursing.sec07.item04")}<br /><span className={`${styles.br} fs_14`}>{t("nursing.sec07.item04_sub")}</span></> },
+      { renderText: () => <>{t("nursing.sec07.item05")}<br /><span className={`${styles.br} fs_14`}>{t("nursing.sec07.item05_sub")}</span></> },
+      { renderText: () => <>{t("nursing.sec07.item06")}<br /><span className={`${styles.br} fs_14`}>{t("nursing.sec07.item06_sub")}</span></> },
+    ],
+    [
+      { renderText: () => t("nursing.sec07.item07") },
+      { renderText: () => t("nursing.sec07.item08") },
+      { renderText: () => t("nursing.sec07.item09") },
+      { renderText: () => t("nursing.sec07.item10") },
+      { renderText: () => t("nursing.sec07.item11") },
+      { renderText: () => <>{t("nursing.sec07.item12")}<br /><span className={styles.br}>{t("nursing.sec07.item12_sub")}</span></> },
+    ],
+    [
+      { renderText: () => <>{t("nursing.sec07.item13")}<br /><span className={styles.br}>{t("nursing.sec07.item13_sub")}</span></> },
+      { renderText: () => <>{t("nursing.sec07.item14_1")}<span className="fs_14">{t("nursing.sec07.item14_2")}</span></> },
+      { renderText: () => <>{t("nursing.sec07.item15")}<br /><span className={styles.br}>{t("nursing.sec07.item15_sub")}</span></> },
+      { renderText: () => t("nursing.sec07.item16"), isNew: true },
+      { renderText: () => <>{t("nursing.sec07.item17")}<br /><span className={styles.br}>{t("nursing.sec07.item17_sub")}</span></>, isNew: true },
+      { renderText: () => <>{t("nursing.sec07.item18")}<br /><span className={`${styles.br} fs_14`}>{t("nursing.sec07.item18_sub")}</span></>, isNew: true },
+    ],
+  ];
   return (
-    <div className="NursingSkillBanner">
-      <HeroBanner
-        title={t('coreNursingSkills')}
-        subtitle={t('practiceManage')}
-        backgroundImage="/bg1.png"
-        overlay={true}
-        overlayOpacity={0.5}
-      >
-        <div className="flex flex-col mt-12 md:flex-row md:gap-5 gap-4 items-center">
-          <Button
-            href="https://nursingskill.mrware.us"
-            variant="cyan"
-            size="md"
-            external
-            icon={<img src="/Group1.png" alt="" className="w-6 h-6" aria-hidden="true" />}
-          >
-            {t('nav1')}
-          </Button>
-          <Button
-            variant="purple"
-            size="md"
-            disabled
-            icon={<img src="/Group2.png" alt="" className="w-6 h-6" aria-hidden="true" />}
-          >
-            {t('nav3')}
-          </Button>
-        </div>
-
-        <div className="flex flex-col mt-4 md:flex-row gap-4 items-center w-full max-w-[570px]">
-          <Button
-            href="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_4da40ab7f9d14b998a98d89a4810f18b/images/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0/%ED%95%B5%EC%8B%AC%EA%B0%84%ED%98%B8%EC%88%A0%EA%B8%B0%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%99%9C%EC%9A%A9%20%EB%A7%A4%EB%89%B4%EC%96%BC_V.02%20(1).pdf"
-            variant="primary"
-            size="full"
-            external
-            icon={<img src="/Group2.png" alt="" className="w-6 h-6" aria-hidden="true" />}
-          >
-            {t('nav2')}
-          </Button>
-        </div>
-      </HeroBanner>
-
-      <Section
-        backgroundColor="gray-50"
-        padding="lg"
-        maxWidth="lg"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
-          <FeatureCard
-            icon="/first-icon-1.png"
-            title="Student"
-            description={
-              <>
-                <p>{t('practiceAnywhere2')}</p>
-                <p>{t('practiceAnyhere')}</p>
-                <p>{t('likeRepeatedPractice')}</p>
-                <p>{t('likeRepeatedPractice2')}</p>
-              </>
-            }
-            className="w-full max-w-sm mx-auto"
+    <>
+      <section className={styles.sec01}>
+        <Image
+          src="/img_nursing/mrware_topper_img.png"
+          width={2000}
+          height={400}
+          alt=""
+        />
+      </section>
+      <section className={styles.sec02}>
+        <div className={styles.secInner}>
+          <p className="fs_20">{t("nursing.sec02.badge")}</p>
+          <Image
+            src="/img_nursing/mrware_logo_arch.png"
+            width={300}
+            height={100}
+            alt=""
+            className={styles.archLogo}
           />
-          <FeatureCard
-            icon="/first-icon-2.png"
-            title="Professor"
-            description={
-              <>
-                <p>
-                  <span className="line-1">{t('studentLearningStatus')}&nbsp;</span>
-                  <span className="line-2">{t('studentLearningStatus2')}</span>
-                </p>
-                <p>{t('feedbackIsGood')}</p>
-                <p>{t('coreNursingSkillScoring')}</p>
-                <p>{t('coreNursingSkillManaging')}</p>
-              </>
-            }
-            className="w-full max-w-sm mx-auto"
-          />
-          <FeatureCard
-            icon="/first-icon-3.png"
-            title="School"
-            description={
-              <>
-                <p>{t('vrDesc1')}</p>
-                <p>{t('vrDesc2')}</p>
-              </>
-            }
-            className="w-full max-w-sm mx-auto"
-          />
+          <h3 className={`${styles.title1} fs_56`}>
+            {t("nursing.sec02.title1")} <br />
+            <span className={styles.c_teal}>{t("nursing.sec02.title2")}</span>{" "}
+            {t("nursing.sec02.title3")}
+          </h3>
+          <p className={`${styles.contText} fs_20`}>
+            {t("nursing.sec02.desc1")} <br className={styles.br_720o} />
+            {t("nursing.sec02.desc2")} <br />
+            {t("nursing.sec02.desc3")} <br />
+            {t("nursing.sec02.desc4")}
+          </p>
+          <a
+            href="https://nursing360.mrware.world/"
+            target="_blank"
+            className={`${styles.arrowBtn} ${styles.bg_teal}`}
+          >
+            <span className="fs_20">{t("nursing.sec02.btn")}</span>
+            <figure>
+              <Image
+                src="/img_nursing/more_arw.png"
+                width={100}
+                height={100}
+                alt=""
+              />
+            </figure>
+          </a>
         </div>
-      </Section>
-
-      {/* 두번째 */}
-      <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#f2f0f4]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-                {t('welcomeMessage')}
-              </h1>
-              <div className="nursing-skill-desc mt-8 text-center">
-                <p className="font-['Noto Sans KR'] font-[400] text-[24px] leading-[34.75px] text-[#2f2f2f]">
-                  {t('introDescription1')}
-                </p>
-                <p className="font-['Noto Sans KR'] font-[400] text-[24px] leading-[34.75px] text-[#2f2f2f]">
-                  {t('introDescription2')}
-                </p>
-              </div>
-              <div className="w-full max-w-[1024px] h-auto mt-10 rounded-[20px] bg-[#FFFFFF] flex flex-col md:flex-row justify-between items-center p-4">
-                <div className="w-full md:w-1/2 pr-4">
-                  <video
-                    className="w-full h-auto rounded-[20px]"
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                  >
-                    <source src="/nursing_video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
+      </section>
+      <section className={styles.sec03}>
+        <div className={styles.secInner}>
+          <div className={styles.titleBox}>
+            <p className={`${styles.title1} fs_48`}>
+              {t("nursing.sec03.title1")} <br />
+              {t("nursing.sec03.title2")}
+            </p>
+          </div>
+          <div className={styles.content}>
+            <div className={`${styles.tab_menu}`}>
+              {TAB_LIST.map((tab) => (
+                <button
+                  key={tab.id}
+                  className={`${styles.tab_btn} fs_18 ${activeTab === tab.id ? styles.active : ""}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {t(tab.key1)}
+                  <br className={styles.br_720o} /> {t(tab.key2)}
+                </button>
+              ))}
+            </div>
+            <div className={`${styles.tab_content}`}>
+              {TAB_LIST.map((tab) => (
+                <div
+                  key={tab.id}
+                  className={styles.tab_item}
+                  style={{ display: activeTab === tab.id ? "block" : "none" }}
+                >
+                  <video autoPlay loop muted playsInline>
+                    <source src={tab.src} type="video/mp4" />
+                    {t("nursing.sec03.video_fallback")}
                   </video>
                 </div>
-                <div className="w-full md:w-1/2 mt-6 md:mt-0 pl-4">
-                  <div className="flex flex-col items-start">
-                    <div className="w-[124.15px] h-[42.79px] rounded-[100px] flex justify-center items-center bg-[#5D5DF9] mb-4">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                        {t('onsiteFeeling')}
-                      </p>
-                    </div>
-                    <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[30px] text-[#2F2F2F] mb-6">
-                      {t('onsiteFeelingDescription')}
-                    </p>
-                    <div className="w-[124.15px] h-[42.79px] rounded-[100px] flex justify-center items-center bg-[#5D5DF9] mb-4">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                        {t('practice')}
-                      </p>
-                    </div>
-                    <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[30px] text-[#2F2F2F] mb-6">
-                      {t('practiceDescription')}
-                    </p>
-                    <div className="w-[124.15px] h-[42.79px] rounded-[100px] flex justify-center items-center bg-[#5D5DF9] mb-4">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                        {t('evaluation')}
-                      </p>
-                    </div>
-                    <p className="font-['Noto Sans KR'] font-[400] text-[20px] leading-[30px] text-[#2F2F2F]">
-                      {t('evaluationDescription')}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-
-          {/* 세번째 */}
-          <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#20cbba]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-                {t('immersivePractice')}
-              </h1>
-              <div className="nursing-skill-desc mt-8 text-center">
-                <p className="font-['Noto Sans KR'] font-[400] text-[24px] leading-[34.75px] text-[#2f2f2f]">
-                  {t('immersionDescription1')}
-                </p>
-              </div>
-              <div className="w-full max-w-[1420px] mt-10 rounded-[20px] bg-[#FFFFFF] flex justify-center items-center flex-col p-4">
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box10.png"
-                        alt="Image 1"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('immediateAccess')}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box11.png"
-                        alt="Image 4"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[24px] leading-[34.75px] text-[#2f2f2f]">
-                        {t('goalAndSituation')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box12.png"
-                        alt="Image 1"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('learningAndAssessment')}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box13.png"
-                        alt="Image 4"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('coreSkillsSelection')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box3.png"
-                        alt="Image 1"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('customizableQuestions')}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box14.png"
-                        alt="Image 4"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('multipleChoiceQuestions')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box15.png"
-                        alt="Image 1"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('supplementaryVideos')}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-[370.34px] h-[262.32px] rounded-[20px] flex flex-col justify-center items-center">
-                    <div className="w-full h-[208px] rounded-[20px]">
-                      <img
-                        src="/box16.png"
-                        alt="Image 4"
-                        className="w-full h-full rounded-[20px]"
-                      />
-                    </div>
-                    <div className="w-full h-[54px] mt-4 rounded-[10px] border-[1px] border-[#5D5DF9] bg-[#E4E4F8] flex justify-center items-center">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[22px] leading-[31.86px] text-center text-[#2F2F2F]">
-                        {t('voiceRecognition')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        </div>
+      </section>
+      <section className={styles.sec04}>
+        <div className={styles.secInner}>
+          <div className={styles.titleBox}>
+            <p className={`${styles.title1} fs_48`}>
+              {t("nursing.sec04.title1")}
+              <br />{" "}
+              <span className={`${styles.c_teal} fs_56`}>
+                {t("nursing.sec04.title2")}
+              </span>
+            </p>
+            <p className={`${styles.contText} fs_20`}>
+              {t("nursing.sec04.desc1")} <br className={styles.br_720o} />
+              {t("nursing.sec04.desc2")}
+            </p>
           </div>
-
-          {/* 네번째 */}
-          <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#d764ff]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-                {t('practiceEvaluationManagement')}
-              </h1>
-            </div>
-            <div className="w-full max-w-[1060.04px] h-auto md:h-[260px] mt-10 rounded-[20px] bg-[#FFFFFF] border-[1px] border-[#1BC768] shadow-[0_4px_24px_rgba(233,233,233,0.5)]">
-              <div className="flex flex-col md:flex-row justify-between items-center p-4 md:h-full">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="w-full md:w-[370.34px] h-[208.21px] rounded-[10px] border-[1px] border-[#EFEFEF]">
-                    <img
-                      src="/stu.png"
-                      alt="Image"
-                      className="w-full h-full rounded-[10px]"
+          <div className={styles.content}>
+            <ul className={`${styles.list03}`}>
+              {SEC04_LIST.map((item, i) => (
+                <li key={i}>
+                  <div className={styles.imgCir}>
+                    <figure>
+                      <Image src={item.img} alt="" width={300} height={300} />
+                    </figure>
+                    <p className="fs_22">{t(item.labelKey)}</p>
+                  </div>
+                  <div className={styles.text_list}>
+                    <p className="fs_18">{item.renderText()}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className={styles.sec05}>
+        <div className={styles.secInner}>
+          <div className={styles.titleBox}>
+            <p className={`${styles.title1} fs_48`}>{t("nursing.sec05.title")}</p>
+          </div>
+          <div className={styles.content}>
+            <div className={`${styles.b_img_box}`}>
+              <ul>
+                <li className={`${styles.b_img_01}`}>
+                  <figure>
+                    <Image
+                      src="/img_nursing/mrware_sec04_img.png"
+                      alt=""
+                      width={700}
+                      height={400}
                     />
-                  </div>
-                  <div className="md:ml-10 mt-4 md:mt-0">
-                    <div className="w-[90.69px] h-[36.77px] rounded-[100px] flex justify-center items-center bg-[#1BC768]">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                        {t('student')}
-                      </p>
-                    </div>
-                    <div className="text-center mt-6">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                        {t('studentDescription1')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  </figure>
+                </li>
+              </ul>
             </div>
-
-            <div className="w-full max-w-[1060.04px] h-auto md:h-[260px] mt-10 rounded-[20px] bg-[#FFFFFF] border-[1px] border-[#1BC768] shadow-[0_4px_24px_rgba(233,233,233,0.5)]">
-              <div className="flex flex-col md:flex-row justify-between items-center p-4 md:h-full">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="w-full md:w-[370.34px] h-[208.21px] rounded-[10px] border-[1px] border-[#EFEFEF]">
-                    <img
-                      src="/tea.png"
-                      alt="Image"
-                      className="w-full h-full rounded-[10px]"
-                    />
-                  </div>
-                  <div className="md:ml-10 mt-4 md:mt-0">
-                    <div className="w-[90.69px] h-[36.77px] rounded-[100px] flex justify-center items-center bg-[#1BC768]">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                        {t('instructor')}
-                      </p>
-                    </div>
-                    <div className="text-center mt-6 mr-20">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                        {t('instructorDescription1')}
-                      </p>
-                    </div>
-                    <div className="text-center mr-2">
-                      <p className="font-['Noto Sans KR'] font-[400] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                        {t('instructorDescription2')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className={`${styles.b_txt_box}`}>
+              <ul>
+                 {SEC05_LIST.map((item, i) => (
+                  <li key={i} className={styles[`b_txt_0${i + 1}`]}>
+                    <p className={`${styles.b_num} fs_36`}>{item.num}</p>
+                    <p className={`${styles.b_cont} fs_22`}>{t(item.textKey)}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-
-          {/* 다섯번째 */}
-          <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#F8F8FF]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-                {t('easyAccessEnvironment')}
-              </h1>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between p-8 md:h-full">
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-[641.39px] h-[414.65px] rounded-[10px] border-[1px] border-[#EFEFEF] mr-15">
-                  <img
-                    src="/web.png"
-                    alt="Image"
-                    className="w-full h-full rounded-[10px]"
-                  />
-                </div>
-                <div className="md:ml-10 mt-4 md:mt-0 relative md:mt-0 md:ml-10">
-                  <div className="absolute w-[151.97px] h-[54.86px] rounded-[100px] flex justify-center items-center bg-[#5D5DF9] top-[-27px] left-[20px]"> {/* 위치 조정 */}
-                    <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                      {t('webVersion')}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-[570px] h-[168px] bg-[#FFFFFF] rounded-[20px] flex flex-col justify-center items-start pl-4 shadow-lg">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                        {t('webVersionDescription1')}
-                      </p>
-                      <p className="font-['Noto Sans KR'] font-[500] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                        {t('webVersionDescription2')}
+        </div>
+      </section>
+      <section className={styles.sec06}>
+        <div className={styles.secInner}>
+          <div className={styles.titleBox}>
+             <p className={`${styles.title1} fs_48`}>
+              {t("nursing.sec06.title1")} <br className={styles.br_m} />
+              {t("nursing.sec06.title2")}
+            </p>
+          </div>
+          <div className={styles.content}>
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={1}
+              centeredSlides={true}
+              spaceBetween={0}
+              loop={true}
+              loopAdditionalSlides={8}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              speed={600}
+              breakpoints={{
+                760: {
+                  slidesPerView: 3,
+                  centeredSlides: true,
+                },
+                1180: {
+                  slidesPerView: 4,
+                  centeredSlides: false,
+                },
+                1340: {
+                  slidesPerView: 5,
+                  centeredSlides: false,
+                },
+                1600: {
+                  slidesPerView: 6,
+                  centeredSlides: false,
+                },
+              }}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+            >
+             {SLIDES.map((slide, i) => (
+                <SwiperSlide key={i}>
+                  <div className={`${styles.cert_wrap} ${slide.bg}`}>
+                    <div className={`${styles.card_slide}`}>
+                      <p className="fs_32">
+                        {slide.keys.map((key, j) => (
+                          <span key={j}>
+                            {t(key)}
+                            {j < slide.keys.length - 1 && <br />}
+                          </span>
+                        ))}
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between p-8 md:h-full">
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="w-full md:w-[641.39px] h-[414.65px] rounded-[10px] border-[1px] border-[#EFEFEF] mr-15">
-                  <img
-                    src="/web2.png"
-                    alt="Image"
-                    className="w-full h-full rounded-[10px]"
-                  />
-                </div>
-                <div className="md:ml-10 mt-4 md:mt-0 relative md:mt-0 md:ml-10">
-                  <div className="absolute w-[151.97px] h-[54.86px] rounded-[100px] flex justify-center items-center bg-[#5D5DF9] top-[-27px] left-[20px]"> {/* 위치 조정 */}
-                    <p className="font-['Noto Sans KR'] font-[400] text-[16px] leading-[23.17px] text-[#FFFFFF]">
-                    {t('installVersion')}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-[570px] h-[168px] bg-[#FFFFFF] rounded-[20px] flex flex-col justify-center items-start pl-4 shadow-lg">
-                      <p className="font-['Noto Sans KR'] font-[500] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                      {t('installVersionDescription1')}
-                      </p>
-                      <p className="font-['Noto Sans KR'] font-[500] text-[18px] md:text-[22px] leading-[36.86px] text-[#2F2F2F]">
-                      {t('installVersionDescription2')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-
-          {/* 여섯번째 */}
-          <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#f2f0f4]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-                {t('recommendedSpecs')}
-              </h1>
-            </div>
-            <table className="download-spec-table w-full max-w-[1024px] mt-10 font-['Noto Sans KR'] ">
-              <thead>
-                <tr className="download-spec-head bg-[#5D5DF9] h-[64px] rounded-[12px]">
-                  <th className="download-col-first w-[25%] px-4 text-left border-r border-[#EFEFEF] text-center text-[#FFFFFF]">
-                    {t('category')}
-                  </th>
-                  <th className="download-col-rest w-[75%] px-4 text-left text-center text-[#FFFFFF]">
-                    {t('webSpecs')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="download-spec-info h-[64px] border-b border-[#EFEFEF] ">
-                  <td className="download-col-first w-[25%] px-4 text-left text-center">
-                    {t('processor')}
-                  </td>
-                  <td className="download-col-rest w-[75%] px-4 text-left text-center">
-                    {t('processorSpec')}
-                  </td>
-                </tr>
-                <tr className="download-spec-info h-[64px] border-b border-[#EFEFEF] ">
-                  <td className="download-col-first w-[25%] px-4 text-left text-center">
-                    {t('memory')}
-                  </td>
-                  <td className="download-col-rest w-[75%] px-4 text-left text-center">
-                    {t('memorySpec')}
-                  </td>
-                </tr>
-                <tr className="download-spec-info h-[64px] border-b border-[#EFEFEF] ">
-                  <td className="download-col-first w-[25%] px-4 text-left text-center">
-                    {t('operatingSystem')}
-                  </td>
-                  <td className="download-col-rest w-[75%] px-4 text-left text-center">
-                    <p>{t('osSpec')}</p>
-                    <p>({t('osSpecDetails')})</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          {/* <div className={`${styles.swiper_controls}`}>
+            <button id="toggle_slide-btn">⏸</button>
+          </div> */}
+        </div>
+      </section>
+      <section className={styles.sec07}>
+        <div className={styles.secInner}>
+          <div className={styles.titleBox}>
+            <p className={`${styles.title1} fs_48`}>
+              {t("nursing.sec07.title1")} <br className={styles.br_m} />
+              {t("nursing.sec07.title2")}
+            </p>
+            <p className={`${styles.contText} fs_20`}>
+              {t("nursing.sec07.desc")}{" "}
+            </p>
           </div>
-          {/* 일곱번째 */}
-          <div className="second flex flex-col justify-center items-center py-20 w-full bg-[#ffffff]">
-            <div className="max-w-[1024px] w-full flex flex-col items-center sm:items-center">
-              <h1 className="nursing-skill-name font-['Noto Sans KR'] font-[700] text-[32px] leading-[46.34px] text-center text-[#2F2F2F]">
-              {t('hmdCompatible')}
-              </h1>
-              <div className="nursing-skill-desc mt-8 text-center">
-                <p className="font-['Noto Sans KR'] font-[400] text-[24px] leading-[34.75px] text-[#2f2f2f]">
-                {t('immersivePractice')}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row justify-center items-center mt-8 gap-8">
-              <div className="flex flex-col items-center border border-[#d1d5db] rounded-lg p-4 mx-8">
-                <img src="/pico.png" alt="Pico G2 4K" className="w-[300px] h-[300px] object-contain" />
-                <p className="mt-2 font-['Noto Sans KR'] font-[400] text-[22px] text-[#7c40ff]">Pico G2 4K</p>
-              </div>
-              <div className="flex flex-col items-center border border-[#d1d5db] rounded-lg p-4 mx-8">
-                <img src="/quest.png" alt="Meta Quest 2" className="w-[300px] h-[300px] object-contain" />
-                <p className="mt-2 font-['Noto Sans KR'] font-[400] text-[22px] text-[#7c40ff]">Meta Quest 2</p>
-              </div>
-            </div>
+          <div className={styles.content}>
+           {SEC07_LIST.map((col, ci) => (
+              <ul key={ci}>
+                {col.map((item, li) => (
+                  <li key={li} className={item.isNew ? styles.new : ""}>
+                    <p className="fs_18">{item.renderText()}</p>
+                  </li>
+                ))}
+                {ci === 2 && (
+                  <Image src="/img_nursing/mrware_sec06_badge.png" alt="" className={styles.badge} width={200} height={200} />
+                )}
+              </ul>
+            ))}
           </div>
-    </div>
+        </div>
+      </section>
+      <section className={styles.sec08}>
+        <div className={styles.secInner}>
+            <div className={styles.titleBox}>
+              <p className={`${styles.title1} fs_48`}>{t("nursing.sec08.title")}</p>
+            </div>
+            <div className={styles.content}>
+              {SEC08_LIST.map((item, i) => (
+              <div key={i} className={styles.col_f}>
+                <Image src={item.img} alt="" width={300} height={500} />
+                <a href={item.href} target="_blank" className={styles.arrowBtn}>
+                  <span className="fs_20">{t(item.btnKey)}</span>
+                  <figure>
+                    <Image src="/img_nursing/more_arw.png" width={100} height={100} alt="" />
+                  </figure>
+                </a>
+              </div>
+            ))}
+            </div>
+        </div>
+      </section>
+      <section className={styles.sec09}>
+        <div className={styles.secInner}>
+            <div className={styles.titleBox}>
+              <p className={`${styles.title1} fs_48`}>{t("nursing.sec09.title")}</p>
+            </div>
+            <div className={styles.content}>
+              <ul className={styles.logoList}>
+                {LOGO_LIST.map((logo, i) => (
+                <li key={i}>
+                  <Image src={logo.src} width={logo.w} height={logo.h} alt="" />
+                </li>
+              ))}
+              </ul>
+            </div>
+        </div>
+      </section>
+    </>
   );
 };
 
