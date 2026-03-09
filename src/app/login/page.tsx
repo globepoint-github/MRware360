@@ -62,6 +62,9 @@ const LoginPage = () => {
         if (data.user) {
           console.log('User Data:', data.user); // Debug: Check if sso_links exists
           localStorage.setItem('userInfo', JSON.stringify(data.user));
+          if (data.token) {
+             localStorage.setItem('userToken', data.token);
+          }
           if (data.user.member_id) {
              localStorage.setItem('username', data.user.member_id);
           }

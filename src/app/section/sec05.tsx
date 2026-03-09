@@ -49,7 +49,11 @@ export default function Section0() {
                   console.error("Failed to parse ssoLinks", e);
                 }
                 console.log("Navigating with links:", ssoLinks);
-                const url = (ssoLinks as any).nursing360 || 'https://nursing360.mrware.world/';
+                let url = (ssoLinks as any).nursing360 || 'https://nursing360.mrware.world/';
+                const token = localStorage.getItem('userToken');
+                if (token) {
+                    url += (url.includes('?') ? '&' : '?') + `token=${token}`;
+                }
                 window.open(url, '_blank');
               }}
                className='btn fs_16'>{t("sec05Text2-1")}</button>
@@ -80,7 +84,12 @@ export default function Section0() {
                    console.error("Failed to parse ssoLinks", e);
                 }
                 const url = (ssoLinks as any).caregiver360 || 'https://caregiver360.mrware.world/';
-                window.open(url, '_blank');
+                const token = localStorage.getItem('userToken');
+                let finalUrl = url;
+                if (token) {
+                    finalUrl += (url.includes('?') ? '&' : '?') + `token=${token}`;
+                }
+                window.open(finalUrl, '_blank');
               }}
               className='btn fs_16'>{t("sec05Text2-1")}</button>
             </div>
@@ -110,7 +119,12 @@ export default function Section0() {
                    console.error("Failed to parse ssoLinks", e);
                 }
                 const url = (ssoLinks as any).rehab360 || 'https://rehab360.mrware.world';
-                window.open(url, '_blank');
+                const token = localStorage.getItem('userToken');
+                let finalUrl = url;
+                if (token) {
+                    finalUrl += (url.includes('?') ? '&' : '?') + `token=${token}`;
+                }
+                window.open(finalUrl, '_blank');
               }}
               className='btn fs_16'>{t("sec05Text2-1")}</button>
             </div>
