@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         success: true,
-        token: userData.token,
+        token: data.token,
         user: userData,
         message: data.alert_message || '로그인 성공',
       });
